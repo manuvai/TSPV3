@@ -1,0 +1,18 @@
+@startuml
+
+class Population {
+    +{static} int PUBLIC_CLASS_VARIABLE
+    -string privateVariable
+    ~void packagePrivateMethod()
+    #{abstract} char protectedMethod(int param)
+}
+
+class Agent {
+
+}
+
+
+
+
+@enduml
+

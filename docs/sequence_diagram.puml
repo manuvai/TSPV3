@@ -1,0 +1,78 @@
+@startuml
+
+hide footbox
+
+participant Ville
+participant File
+participant FileAdapter
+participant Main
+participant Population
+participant Agent
+participant BreedingMethod
+participant MutationMethod
+
+[->Main ++ : start
+    Main -> FileAdapter ++ : Get Villes
+        FileAdapter -> File ++ : Get lines
+        return lines
+        FileAdapter -> FileAdapter : Prepare lines
+
+        loop Pour chaque lignes correspondant\n à une ville
+            FileAdapter -> Ville ++: new Ville(...Object)
+            return Ville
+        end
+        
+    return Villes
+
+    Main -> Population ++ : Give Ville[] for initialization
+        
+        group Initialization
+            loop N number population
+                Population -> Agent ++: Generate List of Path Agents
+                return Agent
+            end
+            
+        end
+
+        loop stop condition 
+            group Selection
+                Population -> Population : Determine elitism
+                
+                Population -> Population : Selection
+                Population -> Population : Generate new Agents
+
+            end
+
+            group Breeding
+                
+                Population -> BreedingMethod ++: Breeding
+                    BreedingMethod -> Agent ++ : Breed
+                    return new childs
+                    note right
+                        Pour ces différentes méthodes, 
+                        il faudra définir
+                        un pourcentage d'action
+                    end note
+                return new childs
+            end
+
+            group Mutation
+                Population -> MutationMethod ++ : Mutate
+                    MutationMethod -> Agent ++ : new Agent() mutated
+                    return new Agent
+                return new Agent
+            end 
+
+        end
+
+        group Selection
+            Population -> Population : Determine elitism
+            
+            Population -> Population : Selection best
+
+        end
+    return best Agent
+    
+return end
+
+@enduml
