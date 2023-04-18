@@ -1,4 +1,4 @@
-from math import sqrtn
+from math import sqrt
 
 class Ville:
   """
