@@ -1,12 +1,12 @@
 from random import randint
-from AbstractBreedingMethod import AbstractBreedingMethod
-from Agent import Agent
+from .AbstractBreedingMethod import AbstractBreedingMethod
+from .Agent import Agent
 
 
 class CrossOnePointBreedingMethod(AbstractBreedingMethod):
     @classmethod
     def breed(cls, parent1: Agent, parent2: Agent) -> list:
-        index = randint(1, len(parent1.villes) - 1)
+        index = randint(0, len(parent1.villes))
 
         childPath1, childPath2 = [], []
 

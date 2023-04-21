@@ -1,4 +1,4 @@
-from Ville import Ville
+from .Ville import Ville
 
 
 class FileAdapter:
