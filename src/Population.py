@@ -13,6 +13,9 @@ class Population:
     p_breed = 0.3
     p_mutate = 0.32
 
+    # TODO Ajouter un générateur d'agent avec ajout des villes de façon "plus intuitive"
+    # TODO Ajouter une nouvelle méthode de mutation
+    # TODO Permettre de calculer la matrice de distance en amont
     def __init__(self, liste_villes: list) -> None:
         self.villes = liste_villes
         self.agents = []
