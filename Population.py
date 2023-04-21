@@ -1,36 +1,34 @@
 from random import randint
 
 from Agent import Agent
+from AgentGenerator import AgentGenerator
 class Population:
+    NB_AGENTS = 10000
+    
     def __init__(self, liste_villes: list) -> None:
         self.villes = liste_villes
         self.agents = []
 
-    def populate(villes: list, nb: int) -> list:
+    def populate(villes: list, nb: int = NB_AGENTS) -> list:
         """Generates random agents
 
         Args:
             nb      (int): Le nombre de population
             villes  (list): La liste des villes
         """
-        def __generate_agent(villes: list):
-            path = []
-            temp_villes = villes
-
-            while len(temp_villes) > 0:
-                index = randint(0, len(temp_villes) - 1)
-                path.append(temp_villes.pop(index))
-
-            return Agent(path)
         
         agents = []
         
         for i in range(nb):
-            agents.append( \
-                    __generate_agent(villes) \
-                )
+            agent = AgentGenerator.generate(villes)
+            agents.append(agent)
             
         return agents
+    
+    def evolve(self):
+        self.selection()
+        self.breed()
+        self.mutate()
             
     def selection(self):
         pass

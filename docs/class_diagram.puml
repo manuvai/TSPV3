@@ -1,18 +1,42 @@
 @startuml
 
-class Population {
-    +{static} int PUBLIC_CLASS_VARIABLE
-    -string privateVariable
-    ~void packagePrivateMethod()
+class "Population" as pop {
+    +int NB_AGENTS
+    +float p_selection
+    +float p_breed
+    +float p_mutate
     #{abstract} char protectedMethod(int param)
+}
+
+class "AbstractBreedingMethod" as abm {
+    #{abstract} tuple[Agent] breed(Agent parent1, Agent parent2)
+}
+
+class "CrossTwoPointsBreedingMethod" as ctpbm {
+    
+}
+
+class "CrossOnePointsBreedingMethod" as copbm {
+
+}
+
+class "AbstractMutationMethod" as amm {
+    #{abstract} Agent mutate(Agent agent)
 }
 
 class Agent {
 
 }
 
+class Ville {
 
+}
 
+ctpbm -up-|> abm
+copbm -up-|> abm
+
+pop "*" --> Agent
+Agent "*" --> Ville
 
 @enduml
 

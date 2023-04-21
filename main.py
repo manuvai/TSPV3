@@ -44,3 +44,6 @@ def stopRun(signal, frame):
   global RUNNING
   RUNNING = False
   # exit(0)
+
+if __name__ == '__main__':
+  pass
